@@ -12,22 +12,31 @@ import { FriendController } from './controller/friend.controller';
       {
         name: 'AUTH',
         transport: Transport.TCP,
-        options: { port: 8101 },
+        options: {
+          port: 8101,
+          host: process.env.AUTHHOST || 'localhost',
+        },
       },
       {
         name: 'FRIEND',
         transport: Transport.TCP,
-        options: { port: 8102 },
+        options: {
+          port: 8102,
+          host: process.env.FRIENDHOST || 'localhost',
+        },
       },
       {
         name: 'GAME',
         transport: Transport.TCP,
-        options: { port: 8103 },
+        options: {
+          port: 8103,
+          host: process.env.GAMEHOST || 'localhost',
+        },
       },
     ]),
     PassportModule.register({ defaultStrategy: 'jwt' }),
   ],
-  controllers: [AuthController, GameController, FriendController],
+  controllers: [AuthController, FriendController, GameController],
   providers: [JwtStrategy],
   exports: [JwtStrategy, PassportModule],
 })
