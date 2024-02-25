@@ -17,16 +17,17 @@ export class AuthCreateDto {
   id: string;
 
   @ApiProperty({
-    description: '로그인의 필요한 사용자 비밀번호 (a-zA-Z0-9)만 가능',
+    description:
+      '로그인의 필요한 사용자 비밀번호 영문 대소문자와 숫자, 특수문자(@, $, !, %, *, ?, &)를 포함해야 한다',
     example: 'passwd123',
     type: String,
   })
   @IsString()
   @MinLength(4)
   @MaxLength(50)
-  //영어랑 숫자만 가능한 유효성 체크
-  @Matches(/^[a-zA-Z0-9]*$/, {
-    message: '영어와 숫자만 입력 가능합니다.',
+  @Matches(/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{13,}$/, {
+    message:
+      '비밀번호는 13자 이상이어야 하며, 영문 대소문자와 숫자, 특수문자(@, $, !, %, *, ?, &)를 포함해야 합니다.',
   })
   passwd: string;
 
