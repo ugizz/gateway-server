@@ -4,9 +4,13 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.enableCors({
+    credentials: true,
+    origin: true,
+  });
   const config = new DocumentBuilder()
     .setTitle('ugizz api gateway server')
-    .setDescription('The cats API description')
+    .setDescription('The ugizz API description')
     .setVersion('1.0')
     .addTag('ugizz')
     //JWT 토큰 설정
