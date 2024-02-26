@@ -58,7 +58,7 @@ export class GameController {
   @ApiResponse({
     type: ResponseResultListDto,
   })
-  @Get('/recode')
+  @Get('/record')
   async getresult(
     @GetUser() user: User,
   ): Promise<ResponseEntity<ResultListDto[]>> {
