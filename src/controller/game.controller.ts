@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Get,
   Inject,
   Post,
   UseGuards,
@@ -48,4 +49,16 @@ export class GameController {
     gameResultDto.user = user;
     return await lastValueFrom(this.gameClient.send('create', gameResultDto));
   }
+
+  // @ApiOperation({ summary: '게임 결과 확인' })
+  // @ApiResponse({
+  //   type: ResponseEntity,
+  // })
+  // @Get('/recode')
+  // async getresult(@GetUser() user: User): Promise<ResponseEntity<string>> {
+  //   gameResultDto.user = user;
+  //   return await lastValueFrom(
+  //     this.gameClient.send('getresult', gameResultDto),
+  //   );
+  // }
 }
