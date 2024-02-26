@@ -20,7 +20,7 @@ import { lastValueFrom } from 'rxjs';
 import {
   ResponseEntity,
   ResponseFriendListDto,
-  ResponseFriendRequestListDtoDto,
+  ResponseFriendRequestListDto,
 } from 'src/data/entity/ResponseEntity';
 import { FriendListDto } from 'src/data/dto/friend/response/friend.list.dto';
 import { FriendRequestListDto } from 'src/data/dto/friend/response/friend.request.list.dto';
@@ -92,7 +92,7 @@ export class FriendController {
 
   @ApiOperation({ summary: '사용자의 친구 신청 내역 조회' })
   @ApiResponse({
-    type: ResponseFriendRequestListDtoDto,
+    type: ResponseFriendRequestListDto,
   })
   @Get('/requested-list')
   async requestFriend(
@@ -103,7 +103,7 @@ export class FriendController {
 
   @ApiOperation({ summary: '사용자의 친구 요청 받은 내역 조회' })
   @ApiResponse({
-    type: ResponseFriendRequestListDtoDto,
+    type: ResponseFriendRequestListDto,
   })
   @Get('/received-list')
   async receviedFriend(

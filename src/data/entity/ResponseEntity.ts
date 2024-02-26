@@ -5,6 +5,7 @@ import { CheckDto } from '../dto/user/response/auth.check.dto';
 import { AccessTokenDto } from '../dto/user/response/auth.access.dto';
 import { FriendListDto } from '../dto/friend/response/friend.list.dto';
 import { FriendRequestListDto } from '../dto/friend/response/friend.request.list.dto';
+import { ResultListDto } from '../dto/game/response/game.result.list.dto';
 
 export class ResponseEntity<T> {
   @ApiProperty({
@@ -68,28 +69,33 @@ export class SwaggerResponse extends OmitType(ResponseEntity, [
   'data',
 ] as const) {}
 
-export class ResponseCheckDto extends IntersectionType(SwaggerResponse) {
+export class ResponseCheckDto extends SwaggerResponse {
   @ApiProperty()
   data: CheckDto;
 }
 
-export class ResponseAccessDto extends IntersectionType(SwaggerResponse) {
+export class ResponseAccessDto extends SwaggerResponse {
   @ApiProperty()
   data: AccessTokenDto;
 }
 
-export class ResponseFriendListDto extends IntersectionType(SwaggerResponse) {
+export class ResponseFriendListDto extends SwaggerResponse {
   @ApiProperty({
     type: [FriendListDto],
   })
   data: FriendListDto[];
 }
 
-export class ResponseFriendRequestListDtoDto extends IntersectionType(
-  SwaggerResponse,
-) {
+export class ResponseFriendRequestListDto extends SwaggerResponse {
   @ApiProperty({
     type: [FriendRequestListDto],
   })
   data: FriendRequestListDto[];
+}
+
+export class ResponseResultListDto extends SwaggerResponse {
+  @ApiProperty({
+    type: [ResultListDto],
+  })
+  data: ResultListDto[];
 }

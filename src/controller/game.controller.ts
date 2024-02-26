@@ -13,7 +13,10 @@ import { ClientProxy } from '@nestjs/microservices';
 import { GameResultDto } from 'src/data/dto/game/request/game.result.create.dto';
 import { User } from 'src/data/entity/user.entity';
 import { GetUser } from 'src/get-user.decorator';
-import { ResponseEntity } from 'src/data/entity/ResponseEntity';
+import {
+  ResponseEntity,
+  ResponseResultListDto,
+} from 'src/data/entity/ResponseEntity';
 import { lastValueFrom } from 'rxjs';
 import {
   ApiBearerAuth,
@@ -22,6 +25,7 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
+import { ResultListDto } from 'src/data/dto/game/response/game.result.list.dto';
 
 @ApiBearerAuth('access-token')
 @ApiTags('게임 API')
@@ -50,15 +54,14 @@ export class GameController {
     return await lastValueFrom(this.gameClient.send('create', gameResultDto));
   }
 
-  // @ApiOperation({ summary: '게임 결과 확인' })
-  // @ApiResponse({
-  //   type: ResponseEntity,
-  // })
-  // @Get('/recode')
-  // async getresult(@GetUser() user: User): Promise<ResponseEntity<string>> {
-  //   gameResultDto.user = user;
-  //   return await lastValueFrom(
-  //     this.gameClient.send('getresult', gameResultDto),
-  //   );
-  // }
+  @ApiOperation({ summary: '게임 결과 확인' })
+  @ApiResponse({
+    type: ResponseResultListDto,
+  })
+  @Get('/recode')
+  async getresult(
+    @GetUser() user: User,
+  ): Promise<ResponseEntity<ResultListDto[]>> {
+    return await lastValueFrom(this.gameClient.send('getresult', user));
+  }
 }
