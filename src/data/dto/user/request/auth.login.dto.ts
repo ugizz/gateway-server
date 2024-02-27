@@ -8,8 +8,7 @@ export class AuthLoginDto {
     type: String,
   })
   @IsString()
-  @MinLength(4)
-  @MaxLength(20)
+  @MaxLength(50)
   id: string;
 
   @ApiProperty({
@@ -18,7 +17,6 @@ export class AuthLoginDto {
     type: String,
   })
   @IsString()
-  @MinLength(4)
   @MaxLength(20)
   passwd: string;
 }

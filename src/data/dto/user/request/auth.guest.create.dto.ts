@@ -26,7 +26,9 @@ export class AuthCreateGuestDto {
   })
   @IsString()
   @MinLength(1)
-  @MaxLength(50)
+  @MaxLength(10, {
+    message: '닉네임음 최대 10글자까지 입력 가능합니다.',
+  })
   @Matches(/^[a-zA-Z0-9가-힣]*$/, { message: '영어 숫자 한글만 가능합니다' })
   nickname: string;
 }

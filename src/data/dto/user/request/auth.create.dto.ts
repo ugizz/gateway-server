@@ -9,8 +9,12 @@ export class AuthCreateDto {
     type: String,
   })
   @IsString()
-  @MinLength(4)
-  @MaxLength(50)
+  @MinLength(4, {
+    message: '최소 4자리 이상 작성해야 됩니다.',
+  })
+  @MaxLength(50, {
+    message: '최대 50자리 까지 가능합니다.',
+  })
   @Matches(/^[a-zA-Z0-9]*$/, {
     message: '영어와 숫자만 입력 가능합니다.',
   })
@@ -23,8 +27,12 @@ export class AuthCreateDto {
     type: String,
   })
   @IsString()
-  @MinLength(12)
-  @MaxLength(50)
+  @MinLength(12, {
+    message: '최소 12자리 이상이여야 합니다.',
+  })
+  @MaxLength(50, {
+    message: '최대 50자리 까지 가능합니다.',
+  })
   @Matches(
     /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*?+=])[A-Za-z\d!@#$%^&*?+=]+$/,
     {
@@ -40,8 +48,6 @@ export class AuthCreateDto {
     type: String,
   })
   @IsString()
-  @MinLength(4)
-  @MaxLength(50)
   //영어랑 숫자만 가능한 유효성 체크
   @Matches(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, {
     message: '이메일 형식에 맞지 않습니다.',
@@ -55,7 +61,9 @@ export class AuthCreateDto {
   })
   @IsString()
   @MinLength(1)
-  @MaxLength(50)
+  @MaxLength(10, {
+    message: '닉네임음 최대 10글자까지 입력 가능합니다.',
+  })
   @Matches(/^[a-zA-Z0-9가-힣]*$/, { message: '영어 숫자 한글만 가능합니다' })
   nickname: string;
 }
